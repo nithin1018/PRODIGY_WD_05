@@ -1,3 +1,7 @@
+const secretKey = 'gcZgh9g7XAQqYb6O';
+const encryptedApiKey = 'V1JiAw4OAQ9hJ2kQblNVeVICYwIJAAMEPHZiQWpWAyk=';
+const decryptedApiKey = xorDecrypt(secretKey, encryptedApiKey);
+
 const apiKey = decryptedApiKey;
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?&units=metric&q=';
 const searchBox = document.querySelector('.search input')
@@ -61,6 +65,3 @@ function xorDecrypt(key, encryptedText) {
 }
 
 // Usage
-const secretKey = 'gcZgh9g7XAQqYb6O';
-const encryptedApiKey = 'V1JiAw4OAQ9hJ2kQblNVeVICYwIJAAMEPHZiQWpWAyk=';
-const decryptedApiKey = xorDecrypt(secretKey, encryptedApiKey);
