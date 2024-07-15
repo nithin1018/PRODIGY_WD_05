@@ -1,4 +1,4 @@
-const apiKey = '018df7f89f8a71c65a9ea9d3d730345f';
+const apiKey = decryptedApiKey;
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?&units=metric&q=';
 const searchBox = document.querySelector('.search input')
 const searchBtn = document.querySelector('.search button')
@@ -50,3 +50,17 @@ searchBox.addEventListener('keypress', function(event) {
         handleSubmit();
     }
 });
+
+function xorDecrypt(key, encryptedText) {
+    let text = atob(encryptedText); // Decode the base64 encoded text
+    let decrypted = '';
+    for (let i = 0; i < text.length; i++) {
+        decrypted += String.fromCharCode(key.charCodeAt(i % key.length) ^ text.charCodeAt(i));
+    }
+    return decrypted;
+}
+
+// Usage
+const secretKey = 'gcZgh9g7XAQqYb6O';
+const encryptedApiKey = 'V1JiAw4OAQ9hJ2kQblNVeVICYwIJAAMEPHZiQWpWAyk=';
+const decryptedApiKey = xorDecrypt(secretKey, encryptedApiKey);
