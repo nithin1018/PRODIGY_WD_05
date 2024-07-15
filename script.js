@@ -1,3 +1,12 @@
+function xorDecrypt(key, encryptedText) {
+    let text = atob(encryptedText); // Decode the base64 encoded text
+    let decrypted = '';
+    for (let i = 0; i < text.length; i++) {
+        decrypted += String.fromCharCode(key.charCodeAt(i % key.length) ^ text.charCodeAt(i));
+    }
+    return decrypted;
+}
+
 const secretKey = 'gcZgh9g7XAQqYb6O';
 const encryptedApiKey = 'V1JiAw4OAQ9hJ2kQblNVeVICYwIJAAMEPHZiQWpWAyk=';
 const decryptedApiKey = xorDecrypt(secretKey, encryptedApiKey);
@@ -58,14 +67,7 @@ searchBox.addEventListener('keypress', function(event) {
     }
 });
 
-function xorDecrypt(key, encryptedText) {
-    let text = atob(encryptedText); // Decode the base64 encoded text
-    let decrypted = '';
-    for (let i = 0; i < text.length; i++) {
-        decrypted += String.fromCharCode(key.charCodeAt(i % key.length) ^ text.charCodeAt(i));
-    }
-    return decrypted;
-}
+
 
 // Initial call to fetch weather data
 // You might want to set a default city or handle this based on user interaction
